@@ -26,6 +26,7 @@ class SearchBar extends React.Component {
                         <i className="search icon"></i>
                     </div>
                     <div className="results"></div>
+                 
                 </div>
 
             </form>

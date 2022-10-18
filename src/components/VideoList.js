@@ -1,11 +1,11 @@
 import React from "react";
 import VideoItem from "./VideoItem";
 
-const VideoList = (props) => {
+const VideoList = ({videos, onVideoSelect}) => {
 
     return (
-        <div className="ui middle aligned divided list">
-            { props.videos.map((video) => <VideoItem video={video}/>) }
+        <div className="ui celled list">
+            { videos.map((video) => <VideoItem key={video.id.videoId} video={video} onVideoSelect={onVideoSelect}/>) }
         </div>
     );
 };
