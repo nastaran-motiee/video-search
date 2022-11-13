@@ -1,41 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/SearchBar.css";
 
-class SearchBar extends React.Component {
-    state = {userInput: ""};
+const SearchBar = ({ onFormSubmit }) => {
+    const [term, setTerm] = useState('');
 
-
-    onInputChange = (event) => {
-        this.setState({userInput: event.target.value});
-    };
-
-
-    onFormSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
-        this.props.onFormSubmit(this.state.userInput);
-
+        onFormSubmit(term);
     };
 
-
-    render() {
-        return (
-            <form className="search-bar" onSubmit={this.onFormSubmit}>
-                <div className="ui fluid category search">
-                    <div className="ui icon input">
-                        <input className="prompt" type="text" placeholder="Search Video..." value={this.state.userInput} onChange={this.onInputChange} />
-                        <i className="search icon"></i>
-                    </div>
-                    <div className="results"></div>
-                 
+    return (
+        <form className="search-bar" onSubmit={ onSubmit }>
+            <div className="ui fluid category search">
+                <div className="ui icon input">
+                    <input
+                        className="prompt"
+                        type="text"
+                        placeholder="Search Video..."
+                        value={ term }
+                        onChange={(event) => setTerm(event.target.value)}
+                    />
+                    <i className="search icon"></i>
                 </div>
+                <div className="results"></div>
+            </div>
+        </form>
+    );
 
-            </form>
-           
-
-        );
-
-    }
-}
-
+};
 
 export default SearchBar;
